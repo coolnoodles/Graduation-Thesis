@@ -1,0 +1,94 @@
+MODULE Module1
+	CONST robtarget jia:=[[1315.014016176,-78.6502578,830.03310657],[-0.000000163,-0.000000004,1,0.000000003],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget an:=[[1315.014030283,-78.650258644,1555.742040929],[-0.000000145,-0.000000005,1,0.000000002],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget fang:=[[71.793534792,-1224.629958375,53.648838851],[-0.000000142,-0.000000038,1,0.000000126],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget fangan:=[[71.793524159,-1224.630020067,1142.079009141],[-0.000000143,-0.000000043,1,0.000000148],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget fang2:=[[71.796813537,-1239.629955046,106.649961949],[-0.000000016,0.707106802,0.70710676,0.000000015],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    VAR num x1:=0;
+    VAR num y1:=0;
+    VAR num z1:=0;
+    VAR num x2:=0;
+    VAR num y2:=0;
+    VAR num z2:=0;
+    VAR num b:=0;
+    VAR num c:=0;
+    VAR num i:=0;
+    VAR num j:=0;
+    !***********************************************************
+    !
+    ! Module:  Module1
+    !
+    ! Description:
+    !   <Insert description here>
+    !
+    ! Author: ?
+    !
+    ! Version: 1.0
+    !
+    !***********************************************************
+    
+    
+    !***********************************************************
+    !
+    ! Procedure main
+    !
+    !   This is the entry point of your program
+    !
+    !***********************************************************     
+    PROC main()
+        FOR c FROM 1 TO 8 DO
+            IF c mod 2 =1 THEN
+                    FOR i FROM 1 TO 2 DO
+                        FOR j FROM 1TO 4 DO
+                            MoveL an,v1000,fine,xipan\WObj:=wobj0;
+                            WaitDI di00,1;
+                            Path_10;
+                            x1:=x1+240;
+                        ENDFOR
+                        x1:=0;
+                        y1:=y1-120; 
+                    ENDFOR
+                    y1:=0;
+                    z1:=z1+106;
+            ELSE   
+                FOR b FROM 1 TO 7 DO
+                        MoveL an,v1000,fine,xipan\WObj:=wobj0;
+                        WaitDI di00,1;
+                        Path_11;
+                        x2:=x2+120;
+                ENDFOR
+                x2:=0;
+                z2:=z2+106;
+            ENDIF
+        ENDFOR
+    ENDPROC
+    
+   PROC Path_10()
+        MoveL an,v1000,fine,xipan\WObj:=wobj0;
+        MoveL jia,v1000,fine,xipan\WObj:=wobj0;
+        WaitTime 0.5;
+        set do00;
+        WaitTime 0.5;
+        MoveL an,v1000,fine,xipan\WObj:=wobj0;
+	    MoveL offs(fangan,x1,y1,0),v1000,fine,xipan\WObj:=wobj0;
+        MoveL offs(fang,x1,y1,z1),v1000,fine,xipan\WObj:=wobj0;
+        WaitTime 0.5;
+        reset do00;
+        WaitTime 0.5;
+        MoveL offs(fangan,x1,y1,0),v1000,fine,xipan\WObj:=wobj0;
+    ENDPROC
+    PROC Path_11()
+         MoveL an,v1000,fine,xipan\WObj:=wobj0;
+        MoveL jia,v1000,fine,xipan\WObj:=wobj0;
+        WaitTime 0.5;
+        set do00;
+        WaitTime 0.5;
+        MoveL an,v1000,fine,xipan\WObj:=wobj0;
+	    MoveL offs(fangan,x2,y2,0),v1000,fine,xipan\WObj:=wobj0;
+        MoveL offs(fang2,x2,y2,z2),v1000,fine,xipan\WObj:=wobj0;
+        WaitTime 0.5;
+        reset do00;
+        WaitTime 0.5;
+        MoveL offs(fangan,x2,y2,0),v1000,fine,xipan\WObj:=wobj0;
+    ENDPROC
+ENDMODULE
